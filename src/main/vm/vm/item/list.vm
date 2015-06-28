@@ -1,0 +1,32 @@
+#set( $pageTitle = "Item List")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+		notify('Success',"$message",'success');
+    });
+		
+	</script>
+#end
+<table class='display-results'>
+	<thead>
+		<th>S.No.</th>
+		<th>Item ID</th>
+		<th>Item Name</th>
+		<th>Item Price</th>
+		<th colspan="2">Action</th>
+    </thead>
+	<tbody>
+		 #foreach( $items in $itemList )
+		<tr #if($foreach.count % 2 == 0) class='even'#else class='odd'#end>
+			<td>$foreach.count</td>
+			<td>$items.itemId</td>
+			<td>$items.itemName</td>
+			<td>$!{items.itemPrice}</td>
+			<td><a href="getItem?itemId=$items.itemId">Edit</a></td>
+			<td><a href="deleteItem?itemId=$items.itemId">Delete</a></td>
+        </tr>
+		#end
+    </tbody>
+</table>

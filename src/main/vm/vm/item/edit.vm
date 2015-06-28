@@ -1,0 +1,47 @@
+#set( $pageTitle = "Edit Item")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/item.js'] )
+#set ($a =$username)
+#*
+#set($layout = "vm/layouts/desktoponly/main.vm")  
+#set($layout = "vm/layouts/desktoponly/main_lft.vm")  
+#set($layout = "vm/layouts/desktoponly/main_simple.vm")  
+#set($layout = "vm/layouts/desktoponly/main_group.vm")  
+#set($layout = "vm/layouts/main_lft.vm") 
+#set($layout = "vm/layouts/main_simple.vm") 
+#set($layout = "vm/layouts/main_group.vm") 
+*#
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+   		alert("$message");
+    });
+	</script>
+#end
+<form action="updateItem" method="post" onsubmit="return valitemIdateItem()">
+	#if($!{error})
+	<div class="error">$!{error}</div>
+	#end
+	 #springBind("itemForm")
+	<table class="login">
+		<tr>
+			<td><label>Item Name :</label> </td>
+		</tr>
+		<tr>
+			<td>
+				<input type="hidden" itemId="itemId" name="itemId" value="$item.itemId">
+				<input type="text" itemId="itemName" name="itemName" value="$item.itemName">
+				<span style="color:red" itemId="error_itemName"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Item Price :</label></td>
+		</tr>
+		<tr>
+			<td><input type="text" itemId="itemPrice" name="itemPrice" value="$!{item.itemPrice}"></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Update" class="add" /></td>
+		</tr>	
+	</table>	
+</form>

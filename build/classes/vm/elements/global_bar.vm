@@ -1,0 +1,29 @@
+<div id="global-bar" class="hidden-phone">
+  <div id="global-bar-container">
+    <button class="btn btn-global-bar" onclick="location='#springUrl('/web/home')';">
+      <span>14</span>
+      <i class="icon-gb-home"></i>
+    </button>
+    <button class="btn btn-global-bar" onclick="location='#springUrl('/web/notification')';">
+      <span>14</span>
+      <i class="icon-gb-notice"></i>
+    </button>
+    <button class="btn btn-global-bar" onclick="location='#springUrl('/web/postwall')';">
+      <span>14</span>
+      <i class="icon-gb-postwall"></i>
+    </button>
+    #if(false)
+    <button class="btn btn-global-bar" onclick="location='#springUrl('/web/home')';">
+      <span>14</span>
+      <i class="icon-gb-photo"></i>
+    </button>
+    <button class="btn btn-global-bar" onclick="location='#springUrl('/web/home')';">
+      <span>14</span>
+      <i class="icon-gb-ocr"></i>
+    </button>   
+    #end
+  </div>
+  <button id="global-bar-toggler" class="display">#springMessage('label.homepage.show')</button>
+  <button id="global-bar-hide-toggler" class="">#springMessage('label.homepage.hide')</button>
+  <div class="global-bar-footer"></div>
+</div>

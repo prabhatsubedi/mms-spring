@@ -1,0 +1,64 @@
+	<div class="header">
+      	<div class="left-header">
+    		<div class="logo">
+    			<a href="$request.contextPath"><img src="resources/images/mms_logo.png" height="61" width="267" /></a>
+    		</div>	
+    	</div>
+		<div class="menu-navigation">
+			<ul class="menu" id="menu">
+            	<li><a href="#" class="menulink">Setting</a>
+            		<ul>
+            			<li><a href="#" class="sub">Item Mgmt</a>
+							<ul>
+                    			<li class="topline"><a href="itemForm">Create Item</a></li>
+                    			<li><a href="itemList">List Item</a></li>
+                    		</ul>
+						</li>
+            			<li><a href="#" class="sub">Party Mgmt</a>
+							<ul>
+                    			<li class="topline"><a href="partyForm">Create Party</a></li>
+                    			<li><a href="partyList">List Party</a></li>
+                    		</ul>
+						</li>
+						<li><a href="#" class="sub">Cashier Mgmt</a>
+							<ul>
+                    			<li class="topline"><a href="cashierForm">Create Cashier</a></li>
+                    			<li><a href="cashierList">List Cashier</a></li>
+                    		</ul>
+						</li>
+            		</ul>
+            	</li>
+            	<li><a href="#" class="menulink">Purchase</a>
+            		<ul>
+            			<li><a href="purchaseForm">Entry Purchase</a></li>
+            			<li><a href="purchaseList">List Purchase</a></li>
+            		</ul>
+            	</li>
+				<li><a href="#" class="menulink">Sales</a>
+            		<ul>
+            			<li><a href="salesForm">Entry Sales</a></li>
+            			<li><a href="salesList">List Sales</a></li>
+            		</ul>
+            	</li>
+				<li><a href="#" class="menulink">Payment</a>
+            		<ul>
+            			<li><a href="paymentForm">Entry Payment</a></li>
+            			<li><a href="paymentList">List Payment</a></li>
+            		</ul>
+            	</li>
+				<li><a class="menulink" href="stockList">Stock</a></li>
+				<li><a class="menulink" href="stockList">Search</a></li>
+            </ul>
+		</div>
+		<div class="right-header">
+			<a href="logout">Logout</a>
+		</div>
+	</div>
+    <div class="clear"></div>
+	
+	
+<script type="text/javascript">
+	var menu=new menu.dd("menu");
+	menu.init("menu","menuhover");
+</script>
+		

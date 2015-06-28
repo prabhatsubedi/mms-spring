@@ -1,0 +1,53 @@
+#set( $pageTitle = "Edit Purchase")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/purchase.js'] )
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+   		alert("$message");
+    });
+	</script>
+#end
+<form action="updatePurchase" method="post">
+	#if($!{error})
+	<div class="error">$!{error}</div>
+	#end
+	<table class="login">
+		<tr>
+			<td><label>Date :</label> </td>
+			<td>
+				<input type="hidden" purchaseId="purchaseId" name="purchaseId" value="$purchase.purchaseId">
+				<input type="text" purchaseId="date" name="date" value="$purchase.date">
+				<span style="color:red" purchaseId="error_datee"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Ref. Invoice No. :</label> </td>
+			<td>
+				<input type="text" name="invoiceNo" value="$!{purchase.invoiceNo}">
+				<span style="color:red" id="error_invoiceNo"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Purchase Type :</label></td>
+			<td><input type="text" name="purchaseType" value="$!{purchase.purchaseType}"></td>
+		</tr>
+		<tr>
+			<td><label>Supplier :</label></td>
+			<td>
+				<select name="partyId">
+					#foreach($supplierList in $supplierList)
+						#if($!{purchase.party.partyId} == ${supplierList.partyId})
+							<option selected="true" value="${supplierList.partyId}_${supplierList.partyName}">$supplierList.partyName</option>
+						#else
+							<option value="${supplierList.partyId}_${supplierList.partyName}">$supplierList.partyName</option>
+						#end
+					#end
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Update" class="add" /></td>
+		</tr>	
+	</table>	
+</form>

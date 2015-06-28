@@ -1,0 +1,72 @@
+#set( $pageTitle = "Create Sold Items")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/validate.js','resources/scripts/ajax.js'] )
+<div>
+	<table class="display-result-header">
+		<thead>
+			<tr>
+    			<th>
+    				Sales ID: $sales.salesId
+    			</th>
+				<th>
+    				Sales Date: $sales.date
+    			</th>
+				<th>
+    				Customer Name: $sales.customerName
+    			</th>
+				<th>
+    				Cashier Name: $cashierName
+    			</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+#if($!{error})
+<div class="error">$!{error}</div>
+#end
+<form id="soldItemForm">
+    <table class="input-form">
+    	<tr>
+    		<td><label>Item :</label></td>
+    		<td>
+    			<input type="hidden" value="$sales.salesId" id="salesId">
+    			<select id="itemId" name="itemId" onchange="getItemDetail(this.id)" >
+    				<option value="Select Item">Select Item</option>
+    				#foreach($itemList in $itemList)
+                       <option value="$itemList.itemId">$itemList.itemName</option>
+    				#end
+    			</select>
+    			<span style="color:red" id="error_item"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><label>Quantity :</label> </td>
+    		<td>
+    			<input  type="text" id="qty" onchange="calculateAmount(this.value, $('#rate').val(), 'amount')">
+    			<span style="color:red" id="error_qty"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><label>Rate :</label> </td>
+    		<td>
+    			<input type="text" id="rate">
+    			<span style="color:red" id="error_rate"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><label>Amount :</label> </td>
+    		<td>
+    			<input type="text" id="amount">
+    			<span style="color:red" id="error_amount"></span>
+    		</td>
+    	</tr>
+    	<tr><td></td>
+    		<td><input type="button" value="Next" onclick="addSoldItem('next')" class="add" /></td>
+    		<td><input type="button" value="Finish" onclick="addSoldItem('finish')" class="add" /></td>
+    	</tr>	
+    </table>	
+</form>
+<div id="itemDetails">
+	
+</div>

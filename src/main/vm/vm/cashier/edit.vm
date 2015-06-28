@@ -1,0 +1,31 @@
+#set( $pageTitle = "Edit Cashier")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/cashier.js'] )
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+   		alert("$message");
+    });
+	</script>
+#end
+<form action="updateCashier" method="post" onsubmit="return validateCashier()">
+	#if($!{error})
+	<div class="error">$!{error}</div>
+	#end
+	 #springBind("cashierForm")
+	<table class="login">
+		<tr>
+			<td><label>Cashier Name :</label> </td>
+		</tr>
+		<tr>
+			<td>
+				<input type="hidden" id="cashierId" name="cashierId" value="$cashier.cashierId">
+				<input type="text" id="cashierName" name="cashierName" value="$cashier.cashierName">
+				<span style="color:red" id="error_cashierName"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Update" class="add" /></td>
+		</tr>	
+	</table>	
+</form>

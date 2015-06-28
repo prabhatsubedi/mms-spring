@@ -1,0 +1,45 @@
+#set( $pageTitle = "Payment List")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/item.js'] )
+
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+		notify('Success',"$message",'success');
+    });
+		
+	</script>
+#end
+<table class='display-results'>
+	<thead>
+		<th>S.No.</th>
+		<th>Sales ID</th>
+		<th>Date</th>
+		<th>Sold Type</th>
+		<th>Supplier Name</th>
+		<th>Cashier Name</th>
+		<th>Items</th>
+		<th colspan="2">Action</th>
+    </thead>
+	<tbody>
+		 #foreach( $sales in $salesList )
+		<tr #if($foreach.count % 2 == 0) class='even'#else class='odd'#end>
+			<td>$foreach.count</td>
+			<td><a href="soldItemsList?salesId=$sales.salesId">$sales.salesId</a></td>
+			<td>$sales.date</td>
+			<td>$!{sales.salesType}</td>
+			<td>$!{sales.customerName}</td>
+			<td>$!{sales.cashier.cashierName}</td>
+			<td>
+				#foreach($key in $map.keySet())
+					#if($sales.salesId == $key)
+						<a href="soldItemsList?salesId=$key">$map.get($key)</a>
+					#end 
+				#end
+			</td>
+			<td><a href="getSales?salesId=$sales.salesId">Edit</a></td>
+			<td><a href="deleteSales?salesId=$sales.salesId">Delete</a></td>
+        </tr>
+		#end
+    </tbody>
+</table>

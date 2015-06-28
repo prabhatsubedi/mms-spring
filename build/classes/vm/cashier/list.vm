@@ -1,0 +1,31 @@
+#set( $pageTitle = "Cashier List")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/cashier.js'] )
+
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+		notify('Success',"$message",'success');
+    });
+		
+	</script>
+#end
+<table class='display-results'>
+	<thead>
+		<th>S.No.</th>
+		<th>Cashier ID</th>
+		<th>Cashier Name</th>
+		<th colspan="2">Action</th>
+    </thead>
+	<tbody>
+		 #foreach( $cashiers in $cashierList )
+		<tr #if($foreach.count % 2 == 0) class='even'#else class='odd'#end>
+			<td>$foreach.count</td>
+			<td>$cashiers.cashierId</td>
+			<td>$cashiers.cashierName</td>
+			<td><a href="getCashier?cashierId=$cashiers.cashierId">Edit</a></td>
+			<td><a href="deleteCashier?cashierId=$cashiers.cashierId">Delete</a></td>
+        </tr>
+		#end
+    </tbody>
+</table>

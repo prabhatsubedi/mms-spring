@@ -1,0 +1,89 @@
+#set( $pageTitle = "Create Purchased Items")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/validate.js','resources/scripts/ajax.js'] )
+<div>
+	<table class="display-result-header">
+		<thead>
+			<tr>
+    			<th>
+    				Purchased ID: $purchaseForm.id
+    			</th>
+				<th>
+    				Purchased Date: $purchaseForm.date
+    			</th>
+				<th>
+    				Ref. Invoice No.: $purchaseForm.invoiceNo
+    			</th>
+				<th>
+    				Party Name: $purchaseForm.partyName
+    			</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+#if($!{error})
+<div class="error">$!{error}</div>
+#end
+#springBind("purchasedItemsForm")
+<table class="input-form">
+	<tr>
+		<td><label>Item :</label></td>
+		<td>
+			<input type="hidden" value="$purchaseForm.id" id="purchaseId">
+			<select id="itemId" name="itemId">
+				<option value="Select Item">Select Item</option>
+				#foreach($itemList in $itemList)
+                   <option value="$itemList.itemId">$itemList.itemName</option>
+				#end
+			</select>
+			<span style="color:red" id="error_item"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Batch No. :</label> </td>
+		<td>
+			<input type="text" id="batchNo">
+			<span style="color:red" id="error_batchNo"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Manufactured Date :</label> </td>
+		<td>
+			<input type="text" id="manufacturedDate">
+			<span style="color:red" id="error_manufacturedDate"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Expiry Date :</label> </td>
+		<td>
+			<input type="text" id="expiryDate">
+			<span style="color:red" id="error_expiryDate"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Quantity :</label> </td>
+		<td>
+			<input type="text" id="qty">
+			<span style="color:red" id="error_qty"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Rate :</label> </td>
+		<td>
+			<input type="text" id="rate">
+			<span style="color:red" id="error_rate"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Amount :</label> </td>
+		<td>
+			<input type="text" id="amount">
+			<span style="color:red" id="error_amount"></span>
+		</td>
+	</tr>
+	<tr><td></td>
+		<td><input type="button" value="Next" onclick="addPurchasedItem('next')" class="add" /></td>
+		<td><input type="button" value="Finish" onclick="addPurchasedItem('finish')" class="add" /></td>
+	</tr>	
+</table>	

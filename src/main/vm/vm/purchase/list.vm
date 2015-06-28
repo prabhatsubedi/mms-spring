@@ -1,0 +1,45 @@
+#set( $pageTitle = "Purchase List")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/item.js'] )
+
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+		notify('Success',"$message",'success');
+    });
+		
+	</script>
+#end
+<table class='display-results'>
+	<thead>
+		<th>S.No.</th>
+		<th>Purchase ID</th>
+		<th>Ref. Invoice No.</th>
+		<th>Date</th>
+		<th>Purchase Type</th>
+		<th>Supplier Name</th>
+		<th>Items</th>
+		<th colspan="2">Action</th>
+    </thead>
+	<tbody>
+		 #foreach( $purchases in $purchaseList )
+		<tr #if($foreach.count % 2 == 0) class='even'#else class='odd'#end>
+			<td>$foreach.count</td>
+			<td><a href="purchasedItemsList?purchaseId=$purchases.purchaseId">$purchases.purchaseId</a></td>
+			<td>$!{purchases.invoiceNo}</td>
+			<td>$purchases.date</td>
+			<td>$!{purchases.purchaseType}</td>
+			<td>$!{purchases.party.partyName}</td>
+			<td>
+				#foreach($key in $map.keySet())
+					#if($purchases.purchaseId == $key)
+						<a href="purchasedItemsList?purchaseId=$key">$map.get($key)</a>
+					#end 
+				#end
+			</td>
+			<td><a href="getPurchase?purchaseId=$purchases.purchaseId">Edit</a></td>
+			<td><a href="deletePurchase?purchaseId=$purchases.purchaseId">Delete</a></td>
+        </tr>
+		#end
+    </tbody>
+</table>

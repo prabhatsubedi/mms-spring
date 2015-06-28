@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+       
+	<global-method-security secured-annotations="disabled" />
+           
+	<http pattern="/css/**" security="none"/>
+	<http pattern="/js/**" security="none"/>
+	<http pattern="/themes/**" security="none"/>
+	<http pattern="/ui/**" security="none"/>
+	<http pattern="/jsp/**" security="none"/>
+	<http pattern="/images/**" security="none"/>
+	<http pattern="/resources/**" security="none"/>
+	<http pattern="/contact" security="none"/>
+	<http pattern="/proxy/contact/add" security="none"/>
+	<http pattern="/proxy/contact/edit" security="none"/>
+	<http pattern="/proxy/contact/delete" security="none"/>
+	
+	<http auto-config='true' >
+ 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/loginform.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+				
+    	<intercept-url pattern="/**" access="ROLE_USER" />
+    	<form-login login-page='/login'
+    		authentication-failure-url="/login" 
+    	/>
+    	 
+    	<logout logout-success-url="/logout" />
+		<session-management invalid-session-url="/login">
+        	<concurrency-control max-sessions="1"
+        	 error-if-maximum-exceeded="true"
+        	 />
+    	</session-management>
+
+    	<logout delete-cookies="JSESSIONID" /> 
+  	</http>
+  	
+	<authentication-manager>
+		<authentication-provider ref='authenticationProvider'/>
+    </authentication-manager>
+
+	<beans:bean id="authenticationProvider" class="com.ics.mms.security.AuthenticationManager" />
+</beans:beans>

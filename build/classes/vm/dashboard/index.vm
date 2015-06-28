@@ -1,0 +1,57 @@
+#set( $pageTitle = "#springMessage('label.page.dashboard.title')")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerCss = ['../res/js/test1.js', '../res/js/test2.js'] )
+#set ($a =$username)
+ <script type="text/javascript">
+         $(document).ready(function () {
+             var chartContainerList=["stock","sales"];
+			 $.each(chartContainerList,function(index,chartName){
+                  fetchChartScript(chartName);
+             });
+		});
+		
+		function fetchChartScript(chart){
+              var parameters = { "chart": chart }
+              $('#td_'+chart).load('getHighchart',parameters,function(response,status){
+                    
+              });
+        }
+				 
+</script>
+<table cellspacing="5" cellpadding="0" width="99%" style="margin: 0 auto;">
+      <g:if test="${isPcpUser}">
+            <tr>
+                  <td id="td_snapshot" width="50%" vallign="top">
+                        <div class="chartloading"></div>
+                  </td>
+                  <td vallign="top" width="50%" id="td_keyQuality" >
+                        <div class="chartloading"></div>
+                  </td>
+            </tr>
+            <tr>
+                  <td id="td_erVisit" vallign="top" width="50%">
+                        <div class="chartloading"></div>
+                  </td>
+                  <td id="td_thirtyDayReadmit" vallign="top" width="50%">
+                        <div class="chartloading"></div>
+                  </td>
+            </tr>
+      </g:if>
+      <g:else>
+            <tr>
+                  <td vallign="top" width="50%" id="td_stock" >
+                        <div class="chartloading"></div>
+                  </td>
+
+                  <td vallign="top" width="50%" id="td_sales" >
+                        <div class="chartloading"></div>
+                  </td>
+            </tr>
+
+            <tr>
+                  <td colspan="2" id="td_pmpmIncurredBasis" >
+                        <div class="chartloading"></div>
+                  </td>
+            </tr>
+      </g:else>
+</table>

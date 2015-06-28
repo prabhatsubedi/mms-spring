@@ -1,0 +1,46 @@
+#set( $pageTitle = "Create Item")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/validate.js'] )
+#set ($a =$username)
+#*
+#set($layout = "vm/layouts/desktoponly/main.vm")  
+#set($layout = "vm/layouts/desktoponly/main_lft.vm")  
+#set($layout = "vm/layouts/desktoponly/main_simple.vm")  
+#set($layout = "vm/layouts/desktoponly/main_group.vm")  
+#set($layout = "vm/layouts/main_lft.vm") 
+#set($layout = "vm/layouts/main_simple.vm") 
+#set($layout = "vm/layouts/main_group.vm") 
+*#
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+   		alert("$message");
+    });
+	</script>
+#end
+<form action="createItem" method="post" onsubmit="return validateItem()">
+	#if($!{error})
+	<div class="error">$!{error}</div>
+	#end
+	 #springBind("itemForm")
+	<table class="input-form">
+		<tr>
+			<td><label>Item Name :</label> </td>
+		</tr>
+		<tr>
+			<td>
+				#springFormInput("itemForm.itemName" "class='test'")
+				<span style="color:red" id="error_itemName"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Item Price :</label></td>
+		</tr>
+		<tr>
+			<td>#springFormInput("itemForm.itemPrice")</td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Create" class="add" /></td>
+		</tr>	
+	</table>	
+</form>

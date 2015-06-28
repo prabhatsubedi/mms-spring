@@ -1,0 +1,61 @@
+<!-- user profile start -->
+<a href="#springUrl('/web/user-profile')"><i class="icon-user-xxlarge"></i></a>
+<div class="user-name">$!session.getAttribute('userName')</div>
+<!-- user profile end -->
+
+<!-- slider nav start -->
+<div class="text-left left-bar-button">
+	  <a href="#springUrl('/web/friends.html')" class="btn btn-rect btn-rect-small">#springMessage('label.lbanner.test1')</a>
+	  <a href="#springUrl('/web/social')" class="btn btn-rect btn-rect-small">#springMessage('label.lbanner.test2')</a>
+	  <a href="#springUrl('/web/')" class="btn btn-rect btn-rect-small">#springMessage('label.lbanner.test3')</a>
+	  <a href="#springUrl('/web/settings.html')" class="btn btn-rect btn-rect-small">#springMessage('label.lbanner.test4')</a>
+</div>
+<!-- slider nav end -->
+
+<!-- slider applications list start -->
+<div class="my-applications">
+	<div>
+		<div id="applications-toggler"> 
+		   #springMessage('label.lbanner.tutorial')
+		</div>
+		<div id="applications-container">
+			<a class="btn-apps" href="#springUrl('/web/test8')">
+				<i class="icon-app-mnm"></i>
+			</a>
+			<a class="btn-apps" href="#springUrl('/web/test7')">
+				<i class="icon-app-live"></i>
+			</a>
+			<a class="btn-apps#if($curUri.contains('/web/test5'))-active#end" href="#springUrl('/web/test5')">
+				<i class="icon-app-limen-library"></i>
+			</a>
+			<a class="btn-apps#if($curUri.contains('/web/test6'))-active#end" href="#springUrl('/web/test6')">
+				<i class="icon-app-my-asset"></i>
+			</a>
+		</div>		
+	</div>	
+	<div>
+		<div id="personal-toggler"> 
+			 #springMessage('label.lbanner.personal')
+		</div>
+		<div id="personal-container">
+			<a class="btn-apps#if($curUri.contains('/web/test1'))-active#end" href="#springUrl('/web/test1')">
+				<i class="icon-app-news-feed"></i>
+			</a>
+			<a class="btn-apps#if($curUri.contains('/web/test2'))-active#end" href="#springUrl('/web/test2')">
+				<i class="icon-app-notice"></i>
+			</a>
+			<a class="btn-apps#if($curUri.contains('/web/test3'))-active#end" href="#springUrl('/web/test3')">
+				<i class="icon-app-subgroup"></i>
+			</a>
+			<a class="btn-apps#if($curUri.contains('/web/test4'))-active#end" href="#springUrl('/web/test4')">
+				<i class="icon-app-search"></i>
+			</a>		
+		</div>			
+	</div>			
+</div>
+<!-- slider applications list end -->
+
+<!-- slider logo start -->
+<div class="limen-logo">&nbsp;</div>
+<div class="left-slider-right">&nbsp;</div>
+<!-- slider logo end -->

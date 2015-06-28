@@ -1,0 +1,69 @@
+#set( $pageTitle = "Sold Items List")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/item.js'] )
+
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+		notify('Success',"$message",'success');
+    });
+		
+	</script>
+#end
+<div>
+	<table class="display-result-header">
+		<thead>
+			<tr>
+    			<th>
+    				<b>Sales ID:</b> $sales.salesId
+    			</th>
+				<th>
+    				<b>Sales Date:</b> $sales.date
+    			</th>
+				<th>
+    				<b>Cashier Name:</b> $sales.cashier.cashierName
+    			</th>
+				<th>
+    				<b>Customer Name:</b> $sales.customerName
+    			</th>
+				<th>
+    				<b>Sales Type:</b> $sales.salesType
+    			</th>
+				<th>
+					<a href="addSoldItem?salesId=$sales.salesId">Add Item</a>
+				</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+<table class='display-results'>
+	<thead>
+		<th>S.No.</th>
+		<th>Sold Items ID</th>
+		<th>Item Name</th>
+		<th>Batch No.</th>
+		<th>Manufactured Date</th>
+		<th>Expiry Date</th>
+		<th>Quantity</th>
+		<th>Rate</th>
+		<th>Amount</th>
+		<th colspan="2">Action</th>
+    </thead>
+	<tbody>
+		 #foreach( $items in $soldItemsList )
+		<tr #if($foreach.count % 2 == 0) class='even'#else class='odd'#end>
+			<td>$foreach.count</td>
+			<td>$items.soldItemsId</td>
+			<td>$!{items.item.itemName}</td>
+			<td>$!{items.batchNo}</td>
+			<td>$!{items.manufacturedDate}</td>
+			<td>$!{items.expiryDate}</td>
+			<td>$!{items.qty}</td>
+			<td>$!{items.rate}</td>
+			<td>$!{items.amount}</td>
+			<td><a href="getSoldItem?soldItemsId=$items.soldItemsId">Edit</a></td>
+			<td><a href="deleteSoldItem?soldItemsId=$items.soldItemsId&salesId=$sales.salesId">Delete</a></td>
+        </tr>
+		#end
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+#set( $pageTitle = "Edit Sales")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/purchase.js'] )
+#if($!{message})
+	<script>
+	$(document).ready(function () {
+   		alert("$message");
+    });
+	</script>
+#end
+<form action="updateSales" method="post">
+	#if($!{error})
+	<div class="error">$!{error}</div>
+	#end
+	<table class="login">
+		<tr>
+			<td><label>Date :</label> </td>
+			<td>
+				<input type="hidden" id="salesId" name="salesId" value="$sales.salesId">
+				<input type="text" id="date" name="date" value="$sales.date">
+				<span style="color:red" id="error_date"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Cashier Name :</label> </td>
+			<td>
+				<select name="cashierId">
+					#foreach($cashierList in $cashierList)
+						#if($!{sales.cashier.cashierId} == ${cashierList.cashierId})
+							<option selected="true" value="${cashierList.cashierId}_${cashierList.cashierName}">$cashierList.cashierName</option>
+						#else
+							<option value="${cashierList.cashierId}_${cashierList.cashierName}">$cashierList.cashierName</option>
+						#end
+					#end
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Sales Type :</label></td>
+			<td>
+				<select name="salesType">
+					#if($!{sales.salesType} == "Cash")
+					<option selected="true" value="Cash">Cash</option>
+					<option value="Credit">Credit</option>
+					#else
+					<option selected="true" value="Credit">Credit</option>
+					<option value="Cash">Cash</option>
+					#end
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Customer Name :</label></td>
+			<td><input type="text" name="customerName" value="$!{sales.customerName}"></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Update" class="add" /></td>
+		</tr>	
+	</table>	
+</form>

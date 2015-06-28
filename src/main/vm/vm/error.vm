@@ -1,0 +1,21 @@
+#set( $pageTitle = "Error")
+#set( $headerCss = ['../res/css/test1.css', '../res/css/test2.css'] )
+#set( $footerJs = ['resources/scripts/item.js'] )
+#*
+#set($layout = "vm/layouts/desktoponly/main.vm")  
+#set($layout = "vm/layouts/desktoponly/main_lft.vm")  
+#set($layout = "vm/layouts/desktoponly/main_simple.vm")  
+#set($layout = "vm/layouts/desktoponly/main_group.vm")  
+#set($layout = "vm/layouts/main_lft.vm") 
+#set($layout = "vm/layouts/main_simple.vm") 
+#set($layout = "vm/layouts/main_group.vm") 
+*#
+#if($!{errorMsg})
+	<script>
+	$(document).ready(function () {
+   		alert("$errorMsg");
+    });
+	</script>
+#end
+<p>Error: $!{exception}</p>
+<p>URL:  $!{url}</p>
