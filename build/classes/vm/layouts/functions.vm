@@ -1,3 +1,0 @@
-#set( $siteTitle = "#springMessage('label.site.title')")
-#set($curUri = $request.getRequestURI())
-#set($siteTitle = "#springMessage('label.site.title')")
